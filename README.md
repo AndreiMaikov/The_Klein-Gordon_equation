@@ -8,6 +8,6 @@ This problem is related to <a href="https://en.wikipedia.org/wiki/Klein-Gordon_e
 The code implements a family of explicit and implicit <a href="https://en.wikipedia.org/wiki/Finite_difference_method">finite difference methods</a>. For the latter, an iterative algorithm was utilized to obtain the numeric solution. 
 
 
-An executable compiled with a Visual C++ compiler was integrated via MathLink with a program complex built using Wolfram Mathematica for studying open boundary conditions.
+An executable compiled with a Visual C++ compiler was integrated via MathLink with a complex of programs built using Wolfram Mathematica for studying open boundary conditions.
 
 **Note.** The code was (and still is) documented very scarcely, as it was only meant to be used by the author within a short time. I am going to add more detailed documentation later on.
