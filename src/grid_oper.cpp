@@ -2,19 +2,17 @@
 #include <valarray>
 #include <cmath>
 
-#include "GridGen.h"
-#include "PhysPar.h"
-#include "GridPar.h"
+#include "grid_gen.h"
+#include "phys_par.h"
+#include "grid_par.h"
 
-
-
-using std::valarray;
 using std::cout;
 using std::cin;
+using std::valarray;
 
 
 extern void print_valarray_length(const valarray<double>&, int l =10);
-extern void CreateWeightMatrix(char*);
+extern void CreateWeightMatrix(const char*);
 
 extern double weight_matrix[4][3];
 /*extern*/ struct scheme_type_error;
@@ -27,7 +25,7 @@ double f_alpha(double r)
 double f_beta(double r)
 {
 	double h_x = use_h_x();			//without this, we'd get h_x = 0 
-									//instead of the correct value of h_x
+									//instead of the correct value of h_x 
 //	cout << "\n\tcontrol: in f_beta h_x = " << h_x <<'\n'; 
 	return p1(r)/(pow(r, NN -1))/h_x/h_x;
 };
@@ -35,15 +33,15 @@ double f_beta(double r)
 double f_pow(double r){return pow(r,NN - 1);};
 
 valarray<double>LambdaX(const valarray<double> U,
-						const valarray<double> L0,
-						const valarray<double> Lpls,
-						const valarray<double> Lmns
-						)
-	{
-		return L0*(U) +
-			   Lpls*(U.shift(1)) +
-			   Lmns*(U.shift(-1));
-	}; 
+	const valarray<double> L0,
+	const valarray<double> Lpls,
+	const valarray<double> Lmns
+)
+{
+	return L0 * (U)+
+		Lpls * (U.shift(1)) +
+		Lmns * (U.shift(-1));
+};
 
 
 /********************************************************************************/
@@ -66,7 +64,7 @@ public:
 	valarray<double>LF1mns;
 	valarray<double>LF2mns;
 /****************************/
-/*	������ ��� �����		*/
+/*		For tests only		*/
 	valarray<double>TestL0;
 	valarray<double>TestLpls;
 	valarray<double>TestLmns;
@@ -103,7 +101,7 @@ GridOperators::GridOperators():
 	const valarray<double> Lmns = Beta*(Alpha.shift(-1));
 	const valarray<double> L0 = - Lpls - Lmns;
 /****************************/
-/*	������ ��� �����		*/
+/*		For tests only		*/
 	TestL0 = L0;
 	TestLpls = Lpls;
 	TestLmns = Lmns;
@@ -127,14 +125,14 @@ GridOperators::GridOperators():
 	LF00 =  Epsilon*(
 		weight_matrix[0][0] * L0 -
 		weight_matrix[1][0] * Delta -
-		weight_matrix[2][0] * gamma/(Tab_r_int.apply(f_pow)) -			///!!!! see the original 
+		weight_matrix[2][0] * gamma/(Tab_r_int.apply(f_pow)) -			// !!!! See the original
 		weight_matrix[3][0] * (Tab_r_int).apply(grid_q)
 		);
 	LF10 = (  valarray<double>(2, K+2) +
 			Epsilon*(
 		weight_matrix[0][1] * L0 -
 		weight_matrix[1][1] * Delta -
-		weight_matrix[2][1] * gamma/(Tab_r_int.apply(f_pow)) -			///!!!! see the original
+		weight_matrix[2][1] * gamma/(Tab_r_int.apply(f_pow)) -			// !!!! See the original
 		weight_matrix[3][1] * (Tab_r_int).apply(grid_q)
 		)
 		);
@@ -142,7 +140,7 @@ GridOperators::GridOperators():
 			Epsilon*(
 		weight_matrix[0][2] * L0 -
 		weight_matrix[1][2] * Delta -
-		weight_matrix[2][2] * gamma/(Tab_r_int.apply(f_pow)) -			///!!!! see the original
+		weight_matrix[2][2] * gamma/(Tab_r_int.apply(f_pow)) -			// !!!! See the original
 		weight_matrix[3][2] * (Tab_r_int).apply(grid_q)
 		)
 		);

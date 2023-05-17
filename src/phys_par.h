@@ -1,13 +1,12 @@
 #pragma once
 
-#include <valarray>		//See the original
 extern const int NN;
-extern const double gamma;    //    !!!!
+extern const double gamma;		//  !!!!
 extern const double rb0;
 extern const double r0;
 
 extern double rho(double r);	
-extern double kappa(double r);
+extern double kappa(double r);	
 extern double sigma(double r);	
 extern double q(double r);		
 
@@ -51,7 +50,7 @@ extern double& use_a_r0();
 extern double& use_b_r0();
 extern double& use_c_r0();
 /********************************************************************************/
-/*				Exact solutions for the five-poin stencil scheme				*/
+/*				Exact solutions for the five-poin stencil case					*/
 extern double omega;
 double& use_omega();					
 extern double u_static1(double r, double t);

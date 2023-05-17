@@ -1,13 +1,11 @@
 #include <cmath>
 #include <iostream>
-#include <valarray>		//See the original
-
-#include "PhysPar.h"
+#include <valarray>					//  See the original
 
 const double Pi = 3.141592653589793;
 
 extern const int NN = 3;
-extern const double gamma = 3.2;  // !!!!
+extern const double gamma = 3.2;	//  !!!!
 extern const double rb0 = 10.0;
 extern const double r0 = 21.0;
 double rho(double r){return 1;};
@@ -16,7 +14,7 @@ double sigma(double r){return 0;};
 double q(double r){return 0;};
 //double p1(double r){return 1;};
 /****************************************************************/
-/*	Function "extensions" to describe the media beyound r = r0	*/
+/*	Function "extensions" describing the media beyound r = r0	*/
 
 double grid_rho(double r){return (r<=r0)?rho(r):1;};
 double grid_kappa(double r){return (r<=r0)?kappa(r):1;};
@@ -24,11 +22,11 @@ double grid_sigma(double r){return (r<=r0)?sigma(r):0;};
 double grid_q(double r){return (r<=r0)?q(r):0;};
 
 
-/********************************************************************/
+/************************************************************************************/
 /*	Difference operator coefficients in the left side of the boundary conditions:	*/
 /*		(a*du/dt + b*du/dr + c*u)|_(r = rb0 || r0) = ... + f_(rb0 || r0)			*/
 /*	and the inhomogeneity of the boundary conditions and the differential equation 	*/
-/*	itself -- see below																	*/
+/*	itself -- see below																*/
 
 
 														
@@ -42,18 +40,18 @@ int m = 2;
 double omega = Pi * m /(r0 - rb0);
 char* ff;
 double& use_omega()								
-{													//See the original
+{													//  See the original
 //	cout <<"omega in use_omega = "<<omega<<'\n';	
 	static double om = Pi * m /(r0 - rb0);			
 //	cout <<"om in use_omega = "<<om<<'\n';			
-//	cin >> ff;											
+//	cin >> ff;										
 	return om;										
 };													
 													
 													
 													
 const double oo = use_omega();
-//double h_t = 1.0; double h_x = 2.0;			//See the original
+//double h_t = 1.0; double h_x = 2.0;				//  See the original
 double h_t = 0.6; double h_x = 2.0;
 /*	The conservative scheme:
 	omega_tild were found using ConsTest.nb form the equation
@@ -71,9 +69,9 @@ double h_t = 0.6; double h_x = 2.0;
 //double omega_tild = 0.3081362764762855;
 //double omega_tild = 0.5818042033204008;
 
-/*	Five-point stencil -- see the original:
+/*	For the ive-point stencil -- see the original:
 
-	for m = 2, r0 = 20, rb0 = 10, h_x = 2 (i.e. K = 5), h_t = 0.6 (�. �. fc = 0.3)
+	for m = 2, r0 = 20, rb0 = 10, h_x = 2 (i.e. K = 5), h_t = 0.6 (?. ?. fc = 0.3)
 			double omega_tild =  0.676914121276099;
 */
 
@@ -114,6 +112,7 @@ extern double u_1_init(double r){return 0;};
 /*						Initial conditions for    u_static3						*/
 //						a_rb0= 0; b_rb0 = 1; c_rb0 = 0;
 //						a_r0 = 0; b_r0 = 1; c_r0 = 0; 
+
 
 extern double u_0_init(double r){return 0;};
 extern double u_1_init(double r)
@@ -198,7 +197,8 @@ c_r0 = 0;
 */
 
 /*						End of Data for Tests								*/
-/********************************************************************************/
+/****************************************************************************/
+
 extern double f_internal(double r, double t){return 0;};
 double f_rb0(double t)
 {
@@ -274,8 +274,8 @@ extern double& use_a_rb0()
 };
 extern double& use_b_rb0()
 {	
-//	static double jj = cos(use_omega()*h_x/2);	//��� �������������� �����
-//	static double jj = cos(use_omega()*h_x/2)/cos(omega_tild*h_t/2);	//��� ����� "�����"
+//	static double jj = cos(use_omega()*h_x/2);			//	For the conservative scheme
+//	static double jj = cos(use_omega()*h_x/2)/cos(omega_tild*h_t/2);	//For the five-point stencil
 	static double jj = -1.0;
 	return jj;
 };
@@ -294,8 +294,8 @@ extern double& use_b_r0()
 {
 //	cout << ::omega <<'\n';
 //	cout << b_r0<<'\n';
-//	static double jj = cos(use_omega()*h_x/2);	//��� �������������� �����
-//	static double jj = cos(use_omega()*h_x/2)/cos(omega_tild*h_t/2);	//��� ����� "�����"
+//	static double jj = cos(use_omega()*h_x/2);			//	For the conservative scheme
+//	static double jj = cos(use_omega()*h_x/2)/cos(omega_tild*h_t/2);	//For the five-point stencil
 	static double jj = 1.0;
 //	cout << "jj in use_b_r0 ="<<jj<<'\n';
 //	cin>>fff;

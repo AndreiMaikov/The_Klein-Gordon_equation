@@ -6,7 +6,7 @@ extern const double rb0;
 extern const double r0;
 extern const double h_x;
 extern const double h_t;
-extern char* type_of_scheme;	//The type of the difference scheme is selected here.  
+extern const char* type_of_scheme;		// Choose the difference scheme type 
 extern double fx(double r);
 extern double p1(double r);
 double& use_h_x();
@@ -17,6 +17,7 @@ extern const double CRight0, CRight1, CRight2, CRight3,
 
 extern const double iterations_precision;
 
+using std::valarray;
 struct GridData
 {
 	valarray<double> U2init;

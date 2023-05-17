@@ -1,15 +1,17 @@
-/************************************************************************************/
-// See the original
 
-#include <iostream>
+//	  See the original
+
+
 #include <valarray>
+#include <iostream>
 
-#include "PrintVal.h";
+#include "print_val.h"
 
 using std::cout;
+using std::cin;
+using std::valarray;
 
-
-void print_valarray_length(const std::valarray<double>& v, int length =10)
+void print_valarray_length(const valarray<double>& v, int length =10)
 {
 	int size_v =  v.size();
 	int nn = 0; int nn10 = length; int nn_line = 1;

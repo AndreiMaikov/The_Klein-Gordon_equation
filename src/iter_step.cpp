@@ -1,9 +1,12 @@
+#include <iostream>
 #include <valarray>
 #include <math.h>
 
-#include "IterSt.h"
 
+using std::cout;
+using std::cin;
 using std::valarray;
+
 
 extern int K;
 //extern double CRight1;
@@ -35,8 +38,8 @@ void F_IterStep_Pointer(const valarray<double>* P_U0Prev,
 		UIFLeft;
 };
 /****************************************************************************/
-/*	The iteration convergence criterion 										
-    is set in the grid analog of the norm in C.								*/
+/*	The iteration convergence criterion 
+	is based on the norm of the grid space C.				 				*/
 
 extern bool IterCrit(const valarray<double>& V1,
 					 const valarray<double>& V2, 
@@ -46,6 +49,3 @@ extern bool IterCrit(const valarray<double>& V1,
 
 	return ( ( (V1 - V2).apply(fabs) ).max() < iteration_precision);
 };
-
-/*																			*/
-/****************************************************************************/

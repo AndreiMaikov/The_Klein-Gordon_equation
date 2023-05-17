@@ -1,7 +1,8 @@
 #include <iostream>
 #include <valarray>
-#include "PhysPar.h"	
-#include "GridPar.h"	
+
+#include "phys_par.h"	
+#include "grid_par.h"	
 
 using std::cout;
 using std::cin;
@@ -9,7 +10,7 @@ using std::valarray;
 
 //extern int K;
 //extern const double h_r = (r0 - rb0)/K;
-//extern valarray<double> Pro_r_int;			//keep in case Pro_r_int and
+//extern valarray<double> Pro_r_int;			//keep in case Pro_r_int and 
 //extern valarray<double> Pro_r_semiint;		//Pro_r_semiint are read from a file
 //extern void CreateWeightMatrix(char*);
 //extern double weight_matrix[4][3];

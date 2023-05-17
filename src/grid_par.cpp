@@ -1,9 +1,11 @@
-#include "PhysPar.h"
 #include <iostream>
 #include <valarray>
-#include "GridGen.h"
 
+#include "grid_gen.h"
+#include "phys_par.h"
 
+using std::cout;
+using std::cin;
 using std::valarray;
 
 int K = 7;
@@ -14,12 +16,13 @@ extern const double iteration_precision = 0.000000001;
 
 extern const double rb0;
 extern const double r0;
-char* type_of_scheme = "conservative";		//The type of the difference scheme is selected here. 
-extern double fx(double r){return r;};			//See the original
+const char* type_of_scheme = "conservative";		// See the original 
+	
+extern double fx(double r){return r;};				
 extern double p1(double r){return 1;};				
-extern const double h_x = (fx(r0) - fx(rb0))/double(K); 
+extern const double h_x = (fx(r0) - fx(rb0))/double(K);
 
-double& use_h_x()								//See the original
+double& use_h_x()									// See the original
 {												
 	static double h_x = (fx(r0) - fx(rb0))/K;	
 	return h_x;									

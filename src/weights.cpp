@@ -1,11 +1,9 @@
 #include <iostream>
 #include <valarray>
 
-#include "Weights.h"
-
-using std::valarray;
 using std::cout;
 using std::cin;
+using std::valarray;
 
 struct scheme_type_error
 {
@@ -14,7 +12,7 @@ struct scheme_type_error
 };
 
 double weight_matrix[4][3];
-void CreateWeightMatrix(char* type_of_scheme)
+void CreateWeightMatrix(const char* type_of_scheme)
 {
 	cout <<"\ntype of scheme is \""<<type_of_scheme<<"\"\n\n" ;
 	int tos = 2;
@@ -76,7 +74,7 @@ for (int ll = 0; ll < 4; ll++)
 };
 
 /************************************************************************************/
-/*		����� weight_matrix � cout ��������� � ���������� � ���� ������				*/
+/*								See the original									*/
 /*
 	for(ll =0; ll<4;ll++)
 	{ 
